@@ -67,11 +67,11 @@ def download_app(fname):
     for pkg in pkgs:
         dl = baseurl + pkg + "?version=latest"
         apk_folder = OUT_DIR + pkg
+        if not os.path.isdir(apk_folder):
+            os.mkdir(apk_folder)
         if glob.glob(apk_folder+"/*.apk"):
             print(f"{pkg} has been downloaded. Continue")
             continue
-        if not os.path.isdir(apk_folder):
-            os.mkdir(apk_folder)
         count += 1
         print(f"Start to download {pkg}, count={count}")
         option = webdriver.ChromeOptions()
